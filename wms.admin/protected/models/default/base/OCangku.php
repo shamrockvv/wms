@@ -33,7 +33,7 @@ class OCangku extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('createtime', 'required'),
+			//array('createtime', 'required'),
 			array('id', 'numerical', 'integerOnly'=>true),
 			array('cangkuid, cangkuname', 'length', 'max'=>20),
 			array('linkphone, linkman, address, lock, store_code, input_man', 'length', 'max'=>50),

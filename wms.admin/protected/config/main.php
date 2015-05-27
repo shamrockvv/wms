@@ -9,7 +9,7 @@ return array(
 	'name' => 'WMS后台',
 	'language' => 'zh_cn',
 	// preloading 'log' component
-	'preload' => array('log', 'bootstrap', 'flatui'),
+	'preload' => array('log', 'bootstrap', 'flatui','flatui3'),
 	// autoloading model and component classes
 	'import' => require(dirname(__FILE__) . '/import.php'),
 	'modules' => array(
@@ -38,6 +38,9 @@ return array(
 		'flatui' => array(
 			'class' => 'flatui.components.FlatUI',
 		),
+        'flatui3'=>array(
+            'class' => 'flatui3.components.FlatUI',
+        ),
 		'user' => array(
 			// enable cookie-based authentication
 			'allowAutoLogin' => true,

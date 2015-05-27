@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-    '产品资料',
+    '产品资料导入',
 );
 
 $this->menu=array(

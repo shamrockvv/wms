@@ -21,13 +21,17 @@
 	border-radius: 10px;
 	border: 1px solid #c0c0c0;
 }
-
-/*.navbar-fixed-top, .navbar-fixed-bottom{*/
-    /*width:100% !important;*/
-/*}*/
-/*.navbar-inner{*/
-    /*padding:5px;*/
-/*}*/
-/*.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{*/
-    /*width:100% !important;*/
-/*}*/
+.breadcrumb {
+    top:20px;!important;
+    position: relative;!important;
+}
+.subnav{
+    top:80px !important;
+}
+.navbar .nav li.dropdown.open .dropdown-menu{
+    top:50%;!important;
+}
+.navbar .nav ul{
+    left:20px;!important;
+    width:auto;!important;
+}

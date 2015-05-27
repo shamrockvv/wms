@@ -78,7 +78,7 @@ class UserAccess extends CWebUser {
                 ),
                 array(
                     'label' => '配送资料',
-                    'url' => array('peisongziliao/index'),
+                    'url' => array('peisongshang/index'),
                 ),
                 array(
                     'label' => 'SKU尺码定义',
@@ -97,11 +97,11 @@ class UserAccess extends CWebUser {
             'items' => array(
                 array(
                     'label' => '仓库设置',
-                    'url' => array('#'),
+                    'url' => array('cangku/index'),
                 ),
                 array(
                     'label' => '库位设置',
-                    'url' => array('#'),
+                    'url' => array('kuwei/index'),
                 ),
                 array(
                     'label' => '打印机设置',

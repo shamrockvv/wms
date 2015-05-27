@@ -26,7 +26,7 @@ class ChanpinziliaoController extends Controller {
     public function accessRules() {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'import'),
+                'actions' => array('index', 'view', 'import','count'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -65,6 +65,7 @@ class ChanpinziliaoController extends Controller {
 
         if (isset($_POST['Chanpinziliao'])) {
             $model->attributes = $_POST['Chanpinziliao'];
+            $model->lururen= Yii::app()->user->id;
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -173,6 +174,7 @@ class ChanpinziliaoController extends Controller {
 
     public function actionImport() {
         $model = Chanpinziliao::model();
+        $strs = array();
         if (isset($_POST['Chanpinziliao'])) {
             $model->attributes = $_POST['Chanpinziliao'];
             $file = CUploadedFile::getInstance($model, 'fileField');
@@ -186,57 +188,68 @@ class ChanpinziliaoController extends Controller {
                 $uploadFile = $savePath . $filename . "." . $file->getExtensionName();
                 if ($file->saveAs($uploadFile)) {
                     Yii::$enableIncludePath = false;
-                    Yii::import('common.phpExcel.PHPExcel');
-                    $objExcel = new PHPExcel();
+                    Yii::import('common.phpExcel.PHPExcel', 1);
                     $objReader = PHPExcel_IOFactory::createReader('Excel5');
                     $objPHPExcel = $objReader->load($uploadFile);
                     $objWorksheet = $objPHPExcel->getActiveSheet();
                     $highestRow = $objWorksheet->getHighestRow();
-                    echo 'highestRow=' . $highestRow;
-                    echo "<br>";
+                    //echo 'highestRow=' . $highestRow;
+                    //echo "<br>";
                     $highestColumn = $objWorksheet->getHighestColumn();
                     $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn);//总列数
-                    echo 'highestColumnIndex=' . $highestColumnIndex;
-                    echo "<br>";
-                    $headtitle = array();
-                    $head = '';
-                    $body = '';
-                    for ($row = 1; $row <= $highestRow; $row++) {
-                        @ob_flush();
-                        @flush();
-                        $body = '';
-                        $strs = array();
+                    //echo 'highestColumnIndex=' . $highestColumnIndex;
+                    //echo "<br>";
+                    //注意$highestRow的行数索引从1开始
+                    for ($row = 2; $row <= $highestRow; $row++) {
                         //注意highestColumnIndex的列数索引从0开始
                         for ($col = 0; $col < $highestColumnIndex; $col++) {
                             $cell = $objWorksheet->getCellByColumnAndRow($col, $row);
                             $value = $cell->getValue();
-                            if ($row == 1) {
-                                if ($col == $highestColumnIndex - 1) {
-                                    continue;
+
+                            if ($cell->getDataType() == PHPExcel_Cell_DataType::TYPE_NUMERIC) {
+                                $cellstyleformat = $cell->getWorksheet()->getStyle($cell->getCoordinate())->getNumberFormat();
+                                $formatcode = $cellstyleformat->getFormatCode();
+                                if (preg_match('/^(\[\$[A-Z]*-[0-9A-F]*\])*[hmsdy]/i', $formatcode)) {
+                                    $value = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($value));
+                                } else {
+                                    $value = PHPExcel_Style_NumberFormat::toFormattedString($value, $formatcode);
                                 }
-                                $head .= "<th>" . $value . "</th>";
-                            } else {
-                                if ($cell->getDataType() == PHPExcel_Cell_DataType::TYPE_NUMERIC) {
-                                    $cellstyleformat = $cell->getWorksheet()->getStyle($cell->getCoordinate())->getNumberFormat();
-                                    $formatcode = $cellstyleformat->getFormatCode();
-                                    if (preg_match('/^(\[\$[A-Z]*-[0-9A-F]*\])*[hmsdy]/i', $formatcode)) {
-                                        $value = gmdate("Y-m-d", PHPExcel_Shared_Date::ExcelToPHP($value));
-                                    } else {
-                                        $value = PHPExcel_Style_NumberFormat::toFormattedString($value, $formatcode);
-                                    }
-                                }
-                                if (is_object($value))
-                                    $value = $value->getPlainText();
-                                $strs[$col] = $value;
                             }
+                            if (is_object($value))
+                                $value = $value->getPlainText();
+                            $strs[$row - 2][$col] = $value;
                         }
                     }
-                    var_dump($strs);
-                    die;
                 }
-                $this->redirect(array('index'));
+                $rows = array();
+                $filedName = array(
+                    'chuchang_bar',
+                    'shangpinmingcheng',
+                    'sku',
+                    'chima',
+                    'yanse',
+                    'rongji',
+                    'jiage'
+                );
+                foreach ($strs as $info) {
+                    $rows = array_combine($filedName,$info);
+                    $model = new Chanpinziliao;
+                    $model->attributes=$rows;
+                    if($model->save()){
+                    }else
+                        throw new CHttpException(404,"导入错误");
+                }
+                $this->redirect(array('admin'));
             }
         }
         $this->render('import', array('model' => $model));
+    }
+
+    public function actionCount(){
+        $suoshucangku = Yii::app()->request->getParam('ck','选择仓库');
+        $kehushu = Kuwei::model()->getKehuNumber($suoshucangku);
+        $pinzhongshu = Kuwei::model()->getPinzhongNumber($suoshucangku);
+        $zongkucun = Kuwei::model()->getZongkucunNumber($suoshucangku);
+        var_dump($kehushu,$pinzhongshu,$zongkucun);
     }
 }

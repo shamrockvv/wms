@@ -30,7 +30,7 @@
 if (!defined('PHPEXCEL_ROOT')) {
     define('PHPEXCEL_ROOT', dirname(__FILE__) . '/');
 	//取消加载
-//    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
 }
 
 
@@ -119,9 +119,9 @@ class PHPExcel
     public function __construct()
     {
 	    //取消yii注册
-	    $phpExcelPath = Yii::getPathOfAlias('common.phpExcel.PHPExcel');
-	    spl_autoload_unregister(array('YiiBase', 'autoload'));
-	    require($phpExcelPath . DIRECTORY_SEPARATOR . 'Autoloader.php');
+	    //$phpExcelPath = Yii::getPathOfAlias('common.phpExcel.PHPExcel');
+	    //spl_autoload_unregister(array('YiiBase', 'autoload'));
+	    //require($phpExcelPath . DIRECTORY_SEPARATOR . 'Autoloader.php');
 
 		$this->_uniqueID = uniqid();
 		$this->_calculationEngine	= PHPExcel_Calculation::getInstance($this);
@@ -156,7 +156,7 @@ class PHPExcel
     public function __destruct() {
         PHPExcel_Calculation::unsetInstance($this);
         $this->disconnectWorksheets();
-	    $this->registerYii();
+	    //$this->registerYii();
 	    //添加yii注册
 
     }    //    function __destruct()

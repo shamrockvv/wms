@@ -1,0 +1,252 @@
+.fui-triangle-up {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e000");
+}
+.fui-triangle-up-small {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e001");
+}
+.fui-triangle-right-large {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e002");
+}
+.fui-triangle-left-large {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e003");
+}
+.fui-triangle-down {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e004");
+}
+.fui-info {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e016");
+}
+.fui-alert {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e017");
+}
+.fui-question {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e018");
+}
+.fui-window {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e019");
+}
+.fui-windows {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e01a");
+}
+.fui-arrow-right {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e02c");
+}
+.fui-arrow-left {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e02d");
+}
+.fui-loop {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e02e");
+}
+.fui-cmd {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e02f");
+}
+.fui-mic {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e030");
+}
+.fui-triangle-down-small {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e005");
+}
+.fui-check-inverted {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e006");
+}
+.fui-heart {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e007");
+}
+.fui-location {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e008");
+}
+.fui-plus {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e009");
+}
+.fui-check {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e00a");
+}
+.fui-cross {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e00b");
+}
+.fui-list {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e00c");
+}
+.fui-new {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e00d");
+}
+.fui-video {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e00e");
+}
+.fui-photo {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e00f");
+}
+.fui-volume {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e010");
+}
+.fui-time {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e011");
+}
+.fui-eye {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e012");
+}
+.fui-chat {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e013");
+}
+.fui-home {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e015");
+}
+.fui-upload {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e01b");
+}
+.fui-search {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e01c");
+}
+.fui-user {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e01d");
+}
+.fui-mail {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e01e");
+}
+.fui-lock {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e01f");
+}
+.fui-power {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e020");
+}
+.fui-star {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e021");
+}
+.fui-calendar {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e023");
+}
+.fui-gear {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e024");
+}
+.fui-book {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e025");
+}
+.fui-exit {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e026");
+}
+.fui-trash {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e027");
+}
+.fui-folder {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e028");
+}
+.fui-bubble {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e029");
+}
+.fui-cross-inverted {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e02a");
+}
+.fui-plus-inverted {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e031");
+}
+.fui-export {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e014");
+}
+.fui-radio-unchecked {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e02b");
+}
+.fui-radio-checked {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e032");
+}
+.fui-checkbox-unchecked {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e033");
+}
+.fui-checkbox-checked {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e034");
+}
+.fui-flat {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e035");
+}
+.fui-calendar-solid {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e022");
+}
+.fui-star-2 {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e036");
+}
+.fui-credit-card {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e037");
+}
+.fui-clip {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e038");
+}
+.fui-link {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e039");
+}
+.fui-pause {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e03b");
+}
+.fui-play {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e03c");
+}
+.fui-tag {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e03d");
+}
+.fui-document {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e03e");
+}
+.fui-image {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e03a");
+}
+.fui-facebook {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e03f");
+}
+.fui-youtube {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e040");
+}
+.fui-vimeo {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e041");
+}
+.fui-twitter {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e042");
+}
+.fui-stumbleupon {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e043");
+}
+.fui-spotify {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e044");
+}
+.fui-skype {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e045");
+}
+.fui-pinterest {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e046");
+}
+.fui-path {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e047");
+}
+.fui-myspace {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e048");
+}
+.fui-linkedin {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e049");
+}
+.fui-googleplus {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e04a");
+}
+.fui-dribbble {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e04c");
+}
+.fui-blogger {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e04d");
+}
+.fui-behance {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e04e");
+}
+.fui-list-thumbnailed {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e04b");
+}
+.fui-list-small-thumbnails {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e04f");
+}
+.fui-list-numbered {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e050");
+}
+.fui-list-large-thumbnails {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e051");
+}
+.fui-list-columned {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e052");
+}
+.fui-list-bulleted {
+	*zoom: expression( this.runtimeStyle['zoom'] = "1", this.innerHTML = "\e053");
+}

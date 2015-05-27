@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h3>Chanpinziliaos</h3>
+<h3>产品资料列表</h3>
 
 <?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,

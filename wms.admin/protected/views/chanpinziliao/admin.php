@@ -1,12 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-	'基本资料'=>array('index'),
+	'产品资料列表'=>array('index'),
 	'产品资料管理',
 );
 
 $this->menu=array(
 	array('label'=>'产品资料列表','url'=>array('index')),
 	array('label'=>'创建产品资料','url'=>array('create')),
+    array('label'=>'产品资料统计','url'=>array('count')),
     array('label'=>'批量导入产品资料','url'=>array('import')),
 );
 

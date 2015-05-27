@@ -4,9 +4,9 @@
 )); ?>
 
     <br>
-    <?php echo $form->dropDownListRow($model,'suoshucangku',$this->getCangkuList(),array('empty'=>"请选择仓库"));?>
+    <?php echo $form->dropDownListRow($model,'suoshucangku',$this->getCangkuList(),array('empty'=>"选择仓库"));?>
 
-    <?php echo $form->dropDownListRow($model,'suoshukehu',$this->getKehuList(),array('empty'=>"请选择客户"));?>
+    <?php echo $form->dropDownListRow($model,'suoshukehu',$this->getKehuList(),array('empty'=>"选择客户"));?>
 
     <?php echo $form->textFieldRow($model,'id',array('class'=>'span5')); ?>
 

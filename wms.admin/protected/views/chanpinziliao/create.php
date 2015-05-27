@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Chanpinziliaos'=>array('index'),
-	'Create',
+	'产品资料'=>array('index'),
+	'创建',
 );
 
 $this->menu=array(
-	array('label'=>'List Chanpinziliao','url'=>array('index')),
-	array('label'=>'Manage Chanpinziliao','url'=>array('admin')),
+	array('label'=>'产品资料列表','url'=>array('index')),
+	array('label'=>'产品资料管理','url'=>array('admin')),
 );
 ?>
 
-<h3>Create Chanpinziliao</h3>
+<h3>创建产品资料</h3>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
