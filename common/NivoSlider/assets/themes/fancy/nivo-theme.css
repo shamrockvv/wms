@@ -1,0 +1,35 @@
+.theme-fancy .nivo-controlNav {
+	position: relative;
+	left: 48%;
+	bottom: 20px;
+	z-index: 10;
+}
+.theme-fancy .nivo-controlNav a {
+	display: block;
+	width: 10px;
+	height: 10px;
+	top: -10px;
+	background: url(bullets.png) no-repeat;
+	text-indent: -9999px;
+	border: 0;
+	margin-right: 3px;
+	float: left;
+}
+.theme-fancy .nivo-controlNav a.active {
+	background-position: -10px 0;
+}
+.theme-fancy .nivo-directionNav a {
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: url(arrows.png) no-repeat;
+	text-indent: -9999px;
+	border: 0;
+}
+.theme-fancy a.nivo-nextNav {
+	background-position: -30px 0;
+	right: 10px;
+}
+.theme-fancy a.nivo-prevNav {
+	left: 10px;
+}
