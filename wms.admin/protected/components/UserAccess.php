@@ -118,8 +118,8 @@ class UserAccess extends CWebUser {
             'label' => '订单管理',
             'url' => '#',
             'items' => array(
-                array('label' => '订单导入', 'url' => '#'),
-                array('label' => '订单审查', 'url' => '#'),
+                array('label' => '订单导入', 'url' => array('dingdan/import')),
+                array('label' => '订单审查', 'url' => array('dingdan/index')),
             ),
             'visible' => !Yii::app()->user->isGuest,
         );

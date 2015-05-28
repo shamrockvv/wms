@@ -3,7 +3,7 @@
 <?php
 
 Yii::app()->bootstrap->register();
-Yii::app()->flatui->register();
+//Yii::app()->flatui->register();
 ?>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
