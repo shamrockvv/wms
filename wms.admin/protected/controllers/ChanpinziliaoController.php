@@ -26,7 +26,7 @@ class ChanpinziliaoController extends Controller {
     public function accessRules() {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'import','count'),
+                'actions' => array('index', 'view', 'import', 'count'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -65,7 +65,7 @@ class ChanpinziliaoController extends Controller {
 
         if (isset($_POST['Chanpinziliao'])) {
             $model->attributes = $_POST['Chanpinziliao'];
-            $model->lururen= Yii::app()->user->id;
+            $model->lururen = Yii::app()->user->id;
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->id));
         }
@@ -231,13 +231,24 @@ class ChanpinziliaoController extends Controller {
                     'rongji',
                     'jiage'
                 );
+                $index = Chanpinziliao::model()->count("kehubianhao=:bianhao",array(":bianhao"=>Yii::app()->user->id));
+                if (!$index) {
+                    $index = 0;
+                }
                 foreach ($strs as $info) {
-                    $rows = array_combine($filedName,$info);
+                    $index += 1;
+                    $rows = array_combine($filedName, $info);
                     $model = new Chanpinziliao;
-                    $model->attributes=$rows;
-                    if($model->save()){
-                    }else
-                        throw new CHttpException(404,"导入错误");
+                    $model->attributes = $rows;
+                    $model->suoshucangku = $_POST['Chanpinziliao']['suoshucangku'];
+                    $model->suoshukehu = $_POST['Chanpinziliao']['suoshukehu'];
+                    $model->kehubianhao = Kehu::model()->getIdByName($model->suoshukehu);
+                    $model->nei_bar = $model->kehubianhao . sprintf("%04d", $index);
+                    $model->lururen = Yii::app()->user->id;
+                    $model->lock="否";
+                    if ($model->save()) {
+                    } else
+                        throw new CHttpException(404, "导入错误");
                 }
                 $this->redirect(array('admin'));
             }
@@ -245,11 +256,11 @@ class ChanpinziliaoController extends Controller {
         $this->render('import', array('model' => $model));
     }
 
-    public function actionCount(){
-        $suoshucangku = Yii::app()->request->getParam('ck','选择仓库');
+    public function actionCount() {
+        $suoshucangku = Yii::app()->request->getParam('ck', '选择仓库');
         $kehushu = Kuwei::model()->getKehuNumber($suoshucangku);
         $pinzhongshu = Kuwei::model()->getPinzhongNumber($suoshucangku);
         $zongkucun = Kuwei::model()->getZongkucunNumber($suoshucangku);
-        var_dump($kehushu,$pinzhongshu,$zongkucun);
+        var_dump($kehushu, $pinzhongshu, $zongkucun);
     }
 }

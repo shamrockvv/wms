@@ -213,6 +213,7 @@ class DingdanController extends Controller {
                 $rows['order_type'] = '201';
                 $rows['zhifufangshi'] = '在线支付';
                 $rows['suoshukehu'] = $_POST['Dingdan']['suoshukehu'];
+                $rows['kehubianhao'] = Kehu::model()->getIdByName($rows['suoshukehu']);
                 $rows['suoshucangku'] = $_POST['Dingdan']['suoshucangku'];
                 $fieldName = array(
                     'peisongshang',
@@ -232,22 +233,29 @@ class DingdanController extends Controller {
                     'dizhi',
                     'dianhua',
                     'remark',
-                    'fapiaoleixing',
-                    'fapiaotaitou',
-                    'fapiaoneirong',
-                    'fapiaojine',
+                    'fapiao_type',
+                    'fapiao_taitou',
+                    'fapiao_neirong',
+                    'fapiao_jine',
                 );
                 /**插入包裹表*/
                 foreach ($strs as $info) {
                     $data = array_combine($fieldName, $info);
                     $rows = array_merge($rows, $data);
                     $mBaoguo = new Baoguo();
+                    //$mBaoguo->attributes = $rows;
+                    $mBaoguo->zhifufangshi = $rows['zhifufangshi'];
+                    $mBaoguo->suoshucangku = $rows['suoshucangku'];
+                    $mBaoguo->suoshukehu=$rows['suoshukehu'];
+                    $mBaoguo->kehubianhao = $rows['kehubianhao'];
+                    $mBaoguo->nei_bar = Chanpinziliao::model()->getNeiBarByChuchangBar($rows['chuchangtiaoma'],$rows['shangpinmingcheng']);
+                    $mBaoguo->pingtai = $rows['pingtai'];
                     $mBaoguo->laiyuan = $rows['laiyuan'];
                     $mBaoguo->peisongshang = $rows['peisongshang'];
                     $mBaoguo->order_type = $rows['order_type'];
                     $mBaoguo->chuchang_bar = $rows['chuchangtiaoma'];
                     $mBaoguo->dingdanbianhao = $rows['dingdanbianhao'];
-                    $mBaoguo->sys_dingdanbianhao = 'FHD-';
+                    $mBaoguo->sys_dingdanbianhao = 'FHD-'.date("Ymdihs");
                     $mBaoguo->shangpinmingcheng = $rows['shangpinmingcheng'];
                     $mBaoguo->shuliang = $rows['shuliang'];
                     $mBaoguo->createtime = $rows['order_create_time'];
@@ -257,22 +265,30 @@ class DingdanController extends Controller {
                     $mBaoguo->yingshou_amount = $rows['yingshou_amount'];
                     $mBaoguo->shishou_amount = $rows['shishou_amount'];
                     $mBaoguo->daishou_amount = $rows['daishou_amount'];
-                    $mBaoguo->fapiao_type = $rows['fapiaoleixing'];
-                    $mBaoguo->fapiao_jine = $rows['fapiaojine'];
-                    $mBaoguo->fapiao_taitou = $rows['fapiaotaitou'];
-                    $mBaoguo->fapiao_neirong = $rows['fapiaoneirong'];
+                    $mBaoguo->fapiao_type = $rows['fapiao_type'];
+                    $mBaoguo->fapiao_jine = $rows['fapiao_jine'];
+                    $mBaoguo->fapiao_taitou = $rows['fapiao_taitou'];
+                    $mBaoguo->fapiao_neirong = $rows['fapiao_neirong'];
                     $mBaoguo->lururen = Yii::app()->user->id;
-                    //if ($mBaoguo->save()) {
+                    $mBaoguo->isNewRecord = true;
+                    //var_dump($mBaoguo->attributes);die;
+                    //if ($mBaoguo->save(false)) {
                     //} else
-                    //    throw new CHttpException(404, "导入错误");
+                    //    throw new CHttpException(404, "导入包裹表错误");
                 }
                 /**插入订单表*/
                 $model = array();
-
+                $index = Dingdan::model()->count("createtime>=:time",array(':time'=>date("Y-m-d") . " 00:00:00"));
+                if(!$index)
+                    $index=1;
+                else
+                    $index +=1;
                 foreach ($strs as $info) {
                     $isNew = true;
                     $data = array_combine($fieldName, $info);
                     $rows = array_merge($rows, $data);
+
+                    $rows['sys_dingdanbianhao'] = 'FHD'.date("ymd") . sprintf('%04d',$index);
                     $rows['lururen'] = Yii::app()->user->id;
                     foreach ($model as $index => $m) {
                         if ($m['dingdanbianhao'] == $rows['dingdanbianhao']) {
@@ -291,9 +307,18 @@ class DingdanController extends Controller {
                         $model[] = $rows;
                     }
                 }
-                var_dump($model);die;
-                $model = new Dingdan();
-                if ($model->save()) {
+                foreach($model as $m){
+                    $mDingdan = new Dingdan();
+                    foreach($m as $index=>$val){
+                        $mDingdan->$index=$val;
+                    };
+                    if ($mDingdan->save(false)) {
+                        /**更新包裹表中发货单编号*/
+                        Baoguo::model()->updateAll(array('sys_dingdanbianhao'=>$m['sys_dingdanbianhao']),"dingdanbianhao=:ddbh",array(":ddbh"=>$m['dingdanbianhao']));
+                    }else{
+                        //print_r($mDingdan->getErrors());die;
+                        throw new CHttpException(404, "导入订单表错误:");
+                    }
                 }
                 $this->redirect(array('admin'));
             }

@@ -35,6 +35,11 @@ class Kehu extends OKehu {
         );
     }
 
+    public function getIdByName($name) {
+        $model = $this->find("kehuname=:name", array(":name" => $name));
+        return $model ? $model->kehubianhao : '';
+    }
+
     protected function beforeSave() {
         Yii::trace(get_class($this) . '.beforeSave()');
         if (parent::beforeSave()) {

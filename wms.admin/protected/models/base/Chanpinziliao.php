@@ -8,6 +8,7 @@
  */
 class Chanpinziliao extends OChanpinziliao {
     public $fileField = '';
+
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
@@ -37,6 +38,11 @@ class Chanpinziliao extends OChanpinziliao {
             'fenlei_name2' => '二级分类',
             'fenlei_name3' => '三级分类',
         );
+    }
+
+    public function getNeiBarByChuchangBar($id,$name) {
+        $model = $this->find("chuchang_bar=:bar and shangpinmingcheng=:name", array(":bar" => $id,':name'=>$name));
+        return $model ? $model->nei_bar : '';
     }
 
     protected function beforeSave() {

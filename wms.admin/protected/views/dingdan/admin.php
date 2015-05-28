@@ -24,15 +24,8 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h3>Manage Dingdans</h3>
+<h3>订单管理</h3>
 
-<!---->
-<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
-<!--<div class="search-form" style="display:none">-->
-<?php //$this->renderPartial('_search',array(
-//	'model'=>$model,
-//)); ?>
-<!--</div><!-- search-form -->-->
 <div>
 
 </div>
