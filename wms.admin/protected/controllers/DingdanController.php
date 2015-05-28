@@ -24,7 +24,7 @@ class DingdanController extends Controller {
     public function accessRules() {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view','import'),
+                'actions' => array('index', 'view', 'import'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -157,11 +157,12 @@ class DingdanController extends Controller {
             Yii::app()->end();
         }
     }
+
     public function actionImport() {
         $model = Dingdan::model();
         $strs = array();
         if (isset($_POST['Dingdan'])) {
-            $model->attributes = $_POST['Dingdan'];
+            //$model->attributes = $_POST['Dingdan'];
             $file = CUploadedFile::getInstance($model, 'fileField');
             if ($file->getType() == 'application/vnd.ms-excel') {
                 $filename = substr(md5($file->getName()), 0, 16);
@@ -207,15 +208,22 @@ class DingdanController extends Controller {
                     }
                 }
                 $rows = array();
-                $filedName = array(
+                $data = array();
+                $rows['laiyuan'] = 'excel导入';
+                $rows['order_type'] = '201';
+                $rows['zhifufangshi'] = '在线支付';
+                $rows['suoshukehu'] = $_POST['Dingdan']['suoshukehu'];
+                $rows['suoshucangku'] = $_POST['Dingdan']['suoshucangku'];
+                $fieldName = array(
                     'peisongshang',
                     'pingtai',
                     'chuchangtiaoma',
                     'dingdanbianhao',
                     'shangpinmingcheng',
-                    'zongshuliang',
+                    'zhongliang',
+                    'shuliang',
                     'order_create_time',
-                    'dingdanjine',
+                    'total_amount',
                     'yunfei',
                     'yingshou_amount',
                     'shishou_amount',
@@ -229,17 +237,77 @@ class DingdanController extends Controller {
                     'fapiaoneirong',
                     'fapiaojine',
                 );
+                /**插入包裹表*/
                 foreach ($strs as $info) {
-                    $rows = array_combine($filedName,$info);
-                    $model = new Dingdan();
-                    $model->attributes=$rows;
-                    if($model->save()){
-                    }else
-                        throw new CHttpException(404,"导入错误");
+                    $data = array_combine($fieldName, $info);
+                    $rows = array_merge($rows, $data);
+                    $mBaoguo = new Baoguo();
+                    $mBaoguo->laiyuan = $rows['laiyuan'];
+                    $mBaoguo->peisongshang = $rows['peisongshang'];
+                    $mBaoguo->order_type = $rows['order_type'];
+                    $mBaoguo->chuchang_bar = $rows['chuchangtiaoma'];
+                    $mBaoguo->dingdanbianhao = $rows['dingdanbianhao'];
+                    $mBaoguo->sys_dingdanbianhao = 'FHD-';
+                    $mBaoguo->shangpinmingcheng = $rows['shangpinmingcheng'];
+                    $mBaoguo->shuliang = $rows['shuliang'];
+                    $mBaoguo->createtime = $rows['order_create_time'];
+                    $mBaoguo->total_amount = $rows['total_amount'];
+                    $mBaoguo->danjia = 0;
+                    $mBaoguo->yunfei = $rows['yunfei'];
+                    $mBaoguo->yingshou_amount = $rows['yingshou_amount'];
+                    $mBaoguo->shishou_amount = $rows['shishou_amount'];
+                    $mBaoguo->daishou_amount = $rows['daishou_amount'];
+                    $mBaoguo->fapiao_type = $rows['fapiaoleixing'];
+                    $mBaoguo->fapiao_jine = $rows['fapiaojine'];
+                    $mBaoguo->fapiao_taitou = $rows['fapiaotaitou'];
+                    $mBaoguo->fapiao_neirong = $rows['fapiaoneirong'];
+                    $mBaoguo->lururen = Yii::app()->user->id;
+                    //if ($mBaoguo->save()) {
+                    //} else
+                    //    throw new CHttpException(404, "导入错误");
+                }
+                /**插入订单表*/
+                $model = array();
+
+                foreach ($strs as $info) {
+                    $isNew = true;
+                    $data = array_combine($fieldName, $info);
+                    $rows = array_merge($rows, $data);
+                    $rows['lururen'] = Yii::app()->user->id;
+                    foreach ($model as $index => $m) {
+                        if ($m['dingdanbianhao'] == $rows['dingdanbianhao']) {
+                            $model[$index]['zongshuliang'] += intval($rows['shuliang']);
+                            $model[$index]['zhongliang'] += floatval($rows['zhongliang']);
+                            unset($model[$index]['shuliang']);
+                            unset($model[$index]['shangpinmingcheng']);
+                            unset($model[$index]['chuchangtiaoma']);
+                            ksort($model[$index]);
+                            $isNew = false;
+                            break;
+                        }
+                    }
+                    if($isNew){
+                        $rows['zongshuliang'] = $rows['shuliang'];
+                        $model[] = $rows;
+                    }
+                }
+                var_dump($model);die;
+                $model = new Dingdan();
+                if ($model->save()) {
                 }
                 $this->redirect(array('admin'));
             }
         }
         $this->render('import', array('model' => $model));
+    }
+
+    public function getCangkuList() {
+        $model = Cangku::model()->findAll();
+        return CHtml::listData($model, "cangkuname", "cangkuname");
+    }
+
+    public function getKehuList() {
+        $model = Kehu::model()->findAll();
+        return CHtml::listData($model, "kehuname", "kehuname");
     }
 }
