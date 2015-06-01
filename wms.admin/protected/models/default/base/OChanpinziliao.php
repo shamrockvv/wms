@@ -43,6 +43,7 @@ class OChanpinziliao extends CActiveRecord {
         // will receive user inputs.
         return array(
             //array('createtime', 'required'),
+            array('suoshucangku,suoshukehu','required'),
             array('id', 'numerical', 'integerOnly' => true),
             array('jiage', 'numerical'),
             array('beidacang_productid', 'length', 'max' => 30),

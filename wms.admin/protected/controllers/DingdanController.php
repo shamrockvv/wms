@@ -167,7 +167,7 @@ class DingdanController extends Controller {
             if ($file->getType() == 'application/vnd.ms-excel') {
                 $filename = substr(md5($file->getName()), 0, 16);
                 $location = date('Ym/d');
-                $savePath = Yii::getPathOfAlias("application") . "/upload/" . $location . "/";
+                $savePath = Yii::getPathOfAlias("application") . "/upload/dingdan/" . $location . "/";
                 if (!is_dir($savePath)) {
                     mkdir($savePath, 0777, true);
                 }
@@ -272,9 +272,9 @@ class DingdanController extends Controller {
                     $mBaoguo->lururen = Yii::app()->user->id;
                     $mBaoguo->isNewRecord = true;
                     //var_dump($mBaoguo->attributes);die;
-                    //if ($mBaoguo->save(false)) {
-                    //} else
-                    //    throw new CHttpException(404, "导入包裹表错误");
+                    if ($mBaoguo->save(false)) {
+                    } else
+                        throw new CHttpException(404, "导入包裹表错误");
                 }
                 /**插入订单表*/
                 $model = array();

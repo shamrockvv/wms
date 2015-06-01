@@ -36,6 +36,7 @@ class OKuweibiandongjilu extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('suoshucangku,suoshukehu','required'),
 			array('id, suoshucangku, kuweihao, nei_bar', 'length', 'max'=>20),
 			array('kehubianhao, danhao, chuchang_bar, leixing, input_man, createtime', 'length', 'max'=>50),
 			array('suoshukehu', 'length', 'max'=>60),

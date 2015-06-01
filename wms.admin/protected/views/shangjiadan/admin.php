@@ -1,13 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Kuweis'=>array('index'),
+	'Shangjiadans'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Kuwei','url'=>array('index')),
-	array('label'=>'Create Kuwei','url'=>array('create')),
-    array('label'=>'Import Kuwei','url'=>array('import')),
+	array('label'=>'List Shangjiadan','url'=>array('index')),
+	array('label'=>'Create Shangjiadan','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -16,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('kuwei-grid', {
+	$.fn.yiiGridView.update('shangjiadan-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -24,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h3>Manage Kuweis</h3>
+<h3>Manage Shangjiadans</h3>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -39,17 +38,44 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'kuwei-grid',
+	'id'=>'shangjiadan-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'kuweihao',
-		'suoshucangku',
+		'partner',
+		'laiyuan',
+		'shangjiadanhao',
+		'order_code',
 		'suoshukehu',
+		/*
 		'kehubianhao',
-		'input_man',
+		'suoshucangku',
+		'order_type_explain',
+		'xiaoshouleixing',
+		'rukucangku',
+		'gonghuoshang',
+		'zhengcanleixing',
+		'remark',
+		'shangpinmingcheng',
+		'chuchang_bar',
+		'nei_bar',
+		'chengbenjia',
+		'caigoujia',
+		'wangluodanjia',
+		'yuyueshuliang',
+		'shangjiashuliang',
+		'shangpinyouxiaoqi',
+		'baozhiqi',
+		'shengchanriqi',
+		'youxiaoqitianshu',
+		'kuweihao',
+		'caozuoren',
 		'createtime',
+		'isshangjia',
+		'querenren',
+		'queren_time',
+		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

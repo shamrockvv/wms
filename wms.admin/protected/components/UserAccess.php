@@ -146,11 +146,11 @@ class UserAccess extends CWebUser {
             'items' => array(
                 array(
                     'label' => '创建预约单',
-                    'url' => array('#'),
+                    'url' => array('shangjiadan/create'),
                 ),
                 array(
                     'label' => '上架单管理',
-                    'url' => array('#'),
+                    'url' => array('shangjiadan/index'),
                 ),
             ),
             'visible' => !Yii::app()->user->isGuest
@@ -179,8 +179,8 @@ class UserAccess extends CWebUser {
             'label'=>'库存盘点',
             'url'=>'#',
             'items'=>array(
-                array('label'=>'创建盘点单','url'=>'#'),
-                array('label'=>'盘点单管理','url'=>'#'),
+                array('label'=>'创建盘点单','url'=>array("pandiandan/create")),
+                array('label'=>'盘点单管理','url'=>array('pandiandan/index')),
             ),
             'visible'=>!Yii::app()->user->isGuest
         );
@@ -230,7 +230,12 @@ class UserAccess extends CWebUser {
                 $menu_base_info,
                 $menu_system,
                 $menu_order,
-
+                $menu_sendgoods,
+                //$menu_saleorback,
+                $menu_recivegodds,
+                $menu_return,
+                $menu_kucunpandian,
+                $menu_kufang,
             );
         } elseif ($this->IsAdvanceAdmin) {
             $main_menu = array(

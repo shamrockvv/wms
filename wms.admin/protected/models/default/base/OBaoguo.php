@@ -111,6 +111,7 @@ class OBaoguo extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('createtime', 'required'),
+            array('suoshucangku,suoshukehu','required'),
 			array('id, kuanghao, shuliang, ercifenjian_saomiao_shuliang, yisaomiao_shuliang, jushousaomiao_shuliang', 'numerical', 'integerOnly'=>true),
 			array('danjia, fapiao_jine, youhuiquan, kouyouhuiquan, yunfei, yishoukuan, yingfukuan, total_amount, payable_amount, yingshou_amount, shishou_amount, daishou_amount', 'numerical'),
 			array('pingtai, laiyuan, user_id, order_type, order_type_explain, sys_dingdanbianhao, dingdanbianhao, baoguohao, kuweihao, chuchang_bar, nei_bar, baoguozhuangtai, sku, wuliudanhao, kefu_time, print_time, fenjiandanhao, fenjiandanhao_2, fenpeifenjianyuan_time, dabaotime, cuoloujian, cuoloujian_time, chengzhong_time, daifa_time, jiaojiedanhao, jiaojiedanhao_time, jiaojietime, disongtime, zuofei_time, huifu_time', 'length', 'max'=>20),

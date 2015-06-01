@@ -181,7 +181,7 @@ class ChanpinziliaoController extends Controller {
             if ($file->getType() == 'application/vnd.ms-excel') {
                 $filename = substr(md5($file->getName()), 0, 16);
                 $location = date('Ym/d');
-                $savePath = Yii::getPathOfAlias("application") . "/upload/" . $location . "/";
+                $savePath = Yii::getPathOfAlias("application") . "/upload/chanpin/" . $location . "/";
                 if (!is_dir($savePath)) {
                     mkdir($savePath, 0777, true);
                 }
@@ -231,24 +231,30 @@ class ChanpinziliaoController extends Controller {
                     'rongji',
                     'jiage'
                 );
-                $index = Chanpinziliao::model()->count("kehubianhao=:bianhao",array(":bianhao"=>Yii::app()->user->id));
+                $index = Chanpinziliao::model()->count("kehubianhao=:bianhao", array(":bianhao" => Yii::app()->user->id));
                 if (!$index) {
                     $index = 0;
                 }
                 foreach ($strs as $info) {
-                    $index += 1;
                     $rows = array_combine($filedName, $info);
                     $model = new Chanpinziliao;
+                    $data = $model->find('chuchang_bar=:bar', array(":bar" => $rows['chuchang_bar']));
+                    if ($data)
+                        $model->isNewRecord = false;
+                    else
+                        $model->isNewRecord = true;
                     $model->attributes = $rows;
                     $model->suoshucangku = $_POST['Chanpinziliao']['suoshucangku'];
                     $model->suoshukehu = $_POST['Chanpinziliao']['suoshukehu'];
                     $model->kehubianhao = Kehu::model()->getIdByName($model->suoshukehu);
                     $model->nei_bar = $model->kehubianhao . sprintf("%04d", $index);
+                    $model->lock = '否';
                     $model->lururen = Yii::app()->user->id;
-                    $model->lock="否";
+                    $model->lock = "否";
                     if ($model->save()) {
                     } else
                         throw new CHttpException(404, "导入错误");
+                    $index += 1;
                 }
                 $this->redirect(array('admin'));
             }
