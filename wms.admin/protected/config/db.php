@@ -22,17 +22,6 @@ return array(
 	'schemaCachingDuration' => 100,
 	'enableParamLogging' => true,
 );
-//return array(
-//	'connectionString' => 'mysql:host=115.182.33.132;dbname=kfkx',
-//	'emulatePrepare' => true,
-//	'username' => 'kfkx',
-//	'password' => 'OMOkQ3lqWq',
-//	'charset' => 'utf8',
-//	'tablePrefix' => 'kfkx_',
-//	'class' => 'CDbConnection',
-//	'schemaCachingDuration' => 100,
-//	'enableParamLogging' => true,
-//);
 
 
 

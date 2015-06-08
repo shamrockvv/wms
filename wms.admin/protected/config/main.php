@@ -101,9 +101,9 @@ return array(
 			'class' => 'common.SwiftMailer.SwiftMailer',
 			'mailer' => 'smtp',
 			'host' => 'smtp.exmail.qq.com',
-			'From' => 'services@dashi.com',
-			'username' => 'services@dashi.com',
-			'password' => 'opda2010000',
+			'From' => '',
+			'username' => '',
+			'password' => '',
 		),
 	),
 	// application-level parameters that can be accessed

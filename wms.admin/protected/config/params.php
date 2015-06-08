@@ -36,7 +36,6 @@ return array(
 	'INIT_LEVEL' => 1,
 	'REQUEST_HOST' => 'http://192.168.1.3/api/api/index.php?r=/',
 	'TOP_QUESTION_NUM' => '10',
-	// Avatar URL: http://img.kfkx.net/?did=1[&type=middle]
 	'AVATAR_URL' => 'http://img.kfkx.net/',
 	'ISHARE_REQUEST_HOST' => 'http://opda.co/',
 	'ISHARE_ICON_URL' => 'I',
@@ -50,12 +49,12 @@ return array(
 	'SERVER_UPGRADE' => '0',
 	'SERVER_MESSAGE' => '服务器正在维护,请稍后再试!',
 	'IMG_MARK' => dirname(__FILE__) . '/../data/opda.png',
-	'TOKEN' => 'opda_20121207',
+	'TOKEN' => '',
 	'wx_opt' => array(
 		'debug' => true,
-		'token' => 'opda2010000',
-		'appid' => 'wxc060491715f14ccd',
-		'appsecret' => 'bcf66e654a9bf02555929c5904fb4986',
+		'token' => '',
+		'appid' => '',
+		'appsecret' => '',
 		'logcallback' => 'logdebug',
 	),
 );
